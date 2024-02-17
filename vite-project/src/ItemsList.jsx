@@ -1,5 +1,5 @@
 const ItemsList = ({ items, deleteItem }) => (
-  <ul>
+  <ol>
     {items.map((item, index) => (
       <li key={index}>
         {item}
@@ -8,7 +8,7 @@ const ItemsList = ({ items, deleteItem }) => (
         </button>
       </li>
     ))}
-  </ul>
+  </ol>
 );
 
 export default ItemsList;

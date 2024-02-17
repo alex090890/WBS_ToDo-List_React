@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AddItemForm from './AddItemForm';
 import ItemsList from './ItemsList';
 import itemsData from './items.json';
+import Header from './Header';
 import './App.css';
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Items</h1>
+      <Header />
       <AddItemForm addItem={addItem} />
       <ItemsList items={items} deleteItem={deleteItem} />
     </div>
