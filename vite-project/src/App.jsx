@@ -6,7 +6,10 @@ import Header from './Header';
 import './App.css';
 
 const App = () => {
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState(() => {
+    const loadedItems = localStorage.getItem('items');
+    return loadedItems ? JSON.parse(loadedItems) : itemsData;
+  });
 
   const addItem = (value) => {
     setItems((prevItems) => [...prevItems, value]);
@@ -17,12 +20,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Save items to the JSON file when they change
-    fetch('/items.json', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(items),
-    }).catch((error) => console.error('Error saving items:', error));
+    // Save items to the localStorage when they change
+    localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
   return (
