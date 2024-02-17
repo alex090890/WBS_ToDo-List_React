@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './Header'
+import AddItemForm from './AddItemForm';
+import ItemsList from './ItemsList';
+import Itemdata from "./items.json";
+import { useState, useEffect } from "react";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+const [items, setItems] = useState(Itemdata);
+const addItem = (value) => {
+  setItems((prevItems) => [...items, value]);
+};
+
+const deleteItem = (index) => {
+  setItems((prevItems) => {
+    prevItems.filter((item, i) => i !== index);
+  });
+};
+
+useEffect(() => {
+fetch('/items.json', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(items),
+    }).catch((error) => console.error('Error saving items:', error));
+}, [items]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Header />
+      <AddItemForm addItem={addItem} />
+      <ItemsList items={items} deleteItem={deleteItem} />
+    </div>
   )
 }
 
