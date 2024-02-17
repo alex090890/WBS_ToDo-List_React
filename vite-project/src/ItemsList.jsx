@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ItemsList = ({ items, deleteItem }) => (
   <ul>
     {items.map((item, index) => (
