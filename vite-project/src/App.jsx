@@ -1,38 +1,36 @@
-import './App.css'
-import Header from './Header'
+import { useEffect, useState } from 'react';
 import AddItemForm from './AddItemForm';
 import ItemsList from './ItemsList';
-import Itemdata from "./items.json";
-import { useState, useEffect } from "react";
+import itemsData from './items.json';
+import './App.css';
 
+const App = () => {
+  const [items, setItems] = useState(itemsData);
 
-function App() {
-const [items, setItems] = useState(Itemdata);
-const addItem = (value) => {
-  setItems((prevItems) => [...items, value]);
-};
+  const addItem = (value) => {
+    setItems((prevItems) => [...prevItems, value]);
+  };
 
-const deleteItem = (index) => {
-  setItems((prevItems) => {
-    prevItems.filter((item, i) => i !== index);
-  });
-};
+  const deleteItem = (index) => {
+    setItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  };
 
-useEffect(() => {
-fetch('/items.json', {
+  useEffect(() => {
+    // Save items to the JSON file when they change
+    fetch('/items.json', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(items),
     }).catch((error) => console.error('Error saving items:', error));
-}, [items]);
+  }, [items]);
 
   return (
     <div>
-      <Header />
+      <h1>Items</h1>
       <AddItemForm addItem={addItem} />
       <ItemsList items={items} deleteItem={deleteItem} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
