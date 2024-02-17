@@ -29,7 +29,7 @@ const App = () => {
     <div>
       <Header />
       <AddItemForm addItem={addItem} />
-      <ItemsList items={items} deleteItem={deleteItem} />
+      <ItemsList items={items} setItems={setItems} deleteItem={deleteItem} />
     </div>
   );
 };
