@@ -34,17 +34,64 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
   margin-left: 10px;
 }
+
+.addbutton {
+  background-color: rgb(81, 213, 32);
+  color: black
+}
+
+.deletebutton {
+  background-color: darkred;
+}
+
+.editbutton {
+  background-color: darkorange;
+}
+
 button:hover {
   border-color: #646cff;
 }
+
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.todolist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.todo {
+  display: grid;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 1em;
+  border: 1px solid #e0e0e0;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+  text-wrap: wrap;
+}
+
+.todotext {
+  font-size: 1.2em;
+  line-height: 1.1;
+  text-wrap: wrap;
+}
+
+.icon {
+  height: 25px;
+  width: 25px;
 }
 
 @media (prefers-color-scheme: light) {
