@@ -18,7 +18,9 @@ const AddItemForm = ({ addItem }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <button type="submit">Add</button>
+      <button type="submit" className='addbutton'>
+        <img className='icon' src="add.png" alt="" />  
+      </button>
     </form>
   );
 };
